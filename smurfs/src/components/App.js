@@ -3,6 +3,7 @@ import "./App.css";
 import { connect } from "react-redux";
 import { getSmurfs } from "../actions";
 import SmurfList from "./SmurfList";
+import AddSmurf from "./AddSmurf";
 
 class App extends Component {
   render() {
@@ -10,8 +11,9 @@ class App extends Component {
     return (
       <div className="App">
         <h1>SMURFS!</h1>
-        <p>HIT THE BUTTON</p>
+        <p>SHOW ME MY SMURFS!</p>
         <button onClick={this.props.getSmurfs}>TIME TO SMURF!</button>
+        <AddSmurf />
 
         <div>
           <SmurfList data={this.props.data} />
