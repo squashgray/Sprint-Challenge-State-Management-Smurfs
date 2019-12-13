@@ -5,7 +5,7 @@ import {
 } from "../actions";
 
 const initialState = {
-  data: null,
+  data: [],
   isFetching: false,
   error: ""
 };

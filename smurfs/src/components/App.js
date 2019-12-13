@@ -2,16 +2,20 @@ import React, { Component } from "react";
 import "./App.css";
 import { connect } from "react-redux";
 import { getSmurfs } from "../actions";
+import SmurfList from "./SmurfList";
 
 class App extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your state management version of Smurfs!</div>
-        <div>Start by hitting the button!</div>
-        <button>TIME TO SMURF!</button>
-        <div>Have fun!</div>
+        <h1>SMURFS!</h1>
+        <p>HIT THE BUTTON</p>
+        <button onClick={this.props.getSmurfs}>TIME TO SMURF!</button>
+
+        <div>
+          <SmurfList data={this.props.data} />
+        </div>
       </div>
     );
   }
