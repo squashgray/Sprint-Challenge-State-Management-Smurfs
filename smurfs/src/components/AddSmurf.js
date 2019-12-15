@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { postSmurfs } from "../actions";
+import { connect } from "react-redux";
 
 class AddSmurf extends Component {
   constructor() {
@@ -15,17 +16,23 @@ class AddSmurf extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitHandler = e => {
+  submitHandler = (e, tools) => {
     e.preventDefault();
     console.log(this.state);
-    axios
-      .post("http://localhost:3333/smurfs", this.state)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    // axios
+    //   .post("http://localhost:3333/smurfs", this.state)
+    //   .then(response => {
+    //     console.log(response);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+    this.props.postSmurfs(this.state);
+    this.setState({
+      name: "",
+      age: "",
+      height: ""
+    });
   };
 
   render() {
@@ -61,4 +68,12 @@ class AddSmurf extends Component {
   }
 }
 
-export default AddSmurf;
+const mapStateToProps = state => {
+  return {
+    data: state.data,
+    isFetching: state.isFetching,
+    error: state.error
+  };
+};
+
+export default connect(mapStateToProps, { postSmurfs })(AddSmurf);
